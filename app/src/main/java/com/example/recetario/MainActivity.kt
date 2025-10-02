@@ -40,12 +40,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
-// =================== THEME (simple) ===================
-private val Orange = Color(0xFFF97316) // orange-500
-private val OrangeDark = Color(0xFFEA580C) // orange-600
-private val Green = Color(0xFF16A34A) // green-600
-private val CardBorder = Color(0xFFE5E7EB) // gray-200
-private val MutedText = Color(0xFF6B7280) // gray-500
+
+private val Orange = Color(0xFFF97316) 
+private val OrangeDark = Color(0xFFEA580C) 
+private val Green = Color(0xFF16A34A) 
+private val CardBorder = Color(0xFFE5E7EB) 
+private val MutedText = Color(0xFF6B7280) 
 
 @Composable
 fun RecetarioThemeM3(content: @Composable () -> Unit) {
@@ -59,7 +59,7 @@ fun RecetarioThemeM3(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = colorScheme, content = content)
 }
 
-// =================== DATA ===================
+
 data class Ingredient(val id: String, val name: String)
 data class Recipe(
     val id: String,
@@ -70,7 +70,7 @@ data class Recipe(
 
 enum class ViewRoute { Main, Results, Detail, Create, AddIngredient }
 
-// =================== ACTIVITY ===================
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,13 +83,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// =================== ROOT APP ===================
 @Composable
 fun RecetarioApp() {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    // ----- App State (simplificado sin savers personalizados) -----
+  
     var currentView by remember { mutableStateOf(ViewRoute.Main) }
 
     val allIngredients = remember {
@@ -158,12 +157,12 @@ fun RecetarioApp() {
     var matchedRecipes by remember { mutableStateOf(listOf<Recipe>()) }
     var selectedRecipe by remember { mutableStateOf<Recipe?>(null) }
 
-    // Create Recipe form
+  
     var newRecipeName by remember { mutableStateOf("") }
     val newRecipeIngredients = remember { mutableStateListOf<String>() }
     var newRecipePreparation by remember { mutableStateOf("") }
 
-    // Add Ingredient form
+ 
     var newIngredientName by remember { mutableStateOf("") }
 
     fun showToast(title: String, description: String? = null) {
@@ -306,7 +305,7 @@ fun RecetarioApp() {
     }
 }
 
-// =================== REUSABLE UI ===================
+
 @Composable
 fun AppTopRow(title: String, onBack: (() -> Unit)? = null) {
     Row(
@@ -319,7 +318,7 @@ fun AppTopRow(title: String, onBack: (() -> Unit)? = null) {
             }
             Spacer(Modifier.width(4.dp))
         }
-        // Ícono básico para evitar material-icons-extended
+  
         androidx.compose.material3.Icon(
             imageVector = Icons.Filled.Search,
             contentDescription = null,
@@ -448,7 +447,7 @@ fun AppCheckbox(checked: Boolean) {
     }
 }
 
-// =================== SCREENS ===================
+
 
 @Composable
 fun MainView(
